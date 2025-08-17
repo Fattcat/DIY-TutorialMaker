@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>                                                                                                                                                     body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
+        h2 { color: #2c3e50; }
+        .btn { display: inline-block; padding: 10px 16px; background: #3498db; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; margin-right: 10px; }                                                                                                                                          .btn:hover { background: #2980b9; }
+        .btn-danger { background: #e74c3c; }
+        .btn-danger:hover { background: #c0392b; }
+        .guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .guide-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .guide-card h5 { margin: 0 0 10px; color: #2c3e50; }
+        .alert { padding: 12px; background: #f1c40f; border-radius: 8px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome, {{ session['username'] }}!</h2>
+    <a href="{{ url_for('create_guide') }}" class="btn">➕ Create Guide</a>
+    <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+
+    <h3>Your Guides</h3>
+    {% if guides %}
+        <div class="guide-grid">
+        {% for g in guides %}
+            <div class="guide-card">
+                <h5>{{ g.title }}</h5>
+                <a href="{{ g.url }}" class="btn">👁️ View</a>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert">No guides yet. Click "Create Guide" to start!</div>
+    {% endif %}
+</div>
+</body>                                                                                                                                                 </html>
