@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #eef2f7; margin: 0; padding: 0; }
+        .container { max-width: 400px; margin: 10vh auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #2c3e50; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; color: #34495e; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #bdc3c7; border-radius: 8px; font-size: 14px; }
+        button { width: 100%; padding: 12px; background: #3498db; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+        .alert { padding: 12px; margin-bottom: 18px; border-radius: 8px; background: #e74c3c; color: white; }
+        .success { background: #2ecc71; }
+        .text-center { text-align: center; margin-top: 15px; }
+        a { color: #3498db; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for cat, msg in messages %}
+        <div class="alert {% if cat == 'success' %}success{% endif %}">{{ msg }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required>                                                                                                    </div>
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="text-center">
+        New? <a href="{{ url_for('register') }}">Register</a>
+    </div>
+</div>
+</body>
+</html>
