@@ -156,7 +156,7 @@ def create_guide():
         </div>
         <div class="footer">
             <hr>
-            <a href="/">← Back to Dashboard</a>
+            <a href="/dashboard">← Back to Dashboard</a>
         </div>
     </div>
 </body>
