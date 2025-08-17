@@ -1,12 +1,16 @@
-<!-- templates/create_guide.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Guide</title>                                                                                                                             <style>
+    <title>Create Guide</title>
+    <style>
         body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
-        .container { max-width: 800px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }                                                                                                                                                              h2 { color: #2c3e50; }                                                                                                                                  .form-group { margin-bottom: 18px; }
+        .container { max-width: 800px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; }
+        .form-group { margin-bottom: 18px; }
         label { display: block; margin-bottom: 6px; font-weight: bold; color: #34495e; }
-        input[type="text"], textarea { width: 100%; padding: 10px; border: 1px solid #bdc3c7; border-radius: 8px; }
+        input[type="text"], textarea, select {
+            width: 100%; padding: 10px; border: 1px solid #bdc3c7; border-radius: 8px;
+        }
         textarea { height: 200px; resize: vertical; }
         .file-input { margin: 10px 0; }
         .actions { margin-top: 20px; }
@@ -27,16 +31,26 @@
       {% endfor %}
     {% endwith %}
 
-    <!-- Form with file upload -->
     <form method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label>Title</label>
             <input type="text" name="title" placeholder="How to Build a Shelf" required>
-        </div>                                                                                                                                          
+        </div>
+
+        <div class="form-group">
+            <label>Category</label>
+            <select name="category" required>
+                {% for cat in categories %}
+                <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
         <div class="form-group">
             <label>Upload Images</label>
             <input type="file" name="image_file" class="file-input" multiple accept="image/*">
-            <small>Supported: JPG, PNG, GIF, WEBP</small>
+            <small>Supported: JPG, PNG, GIF, WEBP</small><br>
+            <small>You can select multiple images at once.</small>
         </div>
 
         <div class="form-group">
@@ -53,3 +67,4 @@ Step 2: Cut the wood...
     </form>
 </div>
 </body>
+</html>
